@@ -1,39 +1,39 @@
 /* =================================================
-   DNA DESIGNS — STYLE.CSS
-   Creative energetic theme: violet + neon cyan
-   ================================================= */
+   DNA DESIGNS — STYLE.CSS
+   Creative energetic theme: violet + neon cyan
+   ================================================= */
 
 /* ---------- ROOT THEME ---------- */
 :root{
-  --bg:#080808;
-  --bg-2:#0c0c10;
-  --muted:#bfc7d9;
-  --white:#ffffff;
-  --violet:#5B00FF;
-  --cyan:#00FFF0;
-  --accent: linear-gradient(90deg,var(--violet),var(--cyan));
-  --glass: rgba(255,255,255,0.03);
-  --glass-2: rgba(255,255,255,0.04);
-  --radius:14px;
-  --fw-regular:400;
-  --fw-bold:700;
-  --container:1200px;
-  font-synthesis: none;
+  --bg:#080808;
+  --bg-2:#0c0c10;
+  --muted:#bfc7d9;
+  --white:#ffffff;
+  --violet:#5B00FF;
+  --cyan:#00FFF0;
+  --accent: linear-gradient(90deg,var(--violet),var(--cyan));
+  --glass: rgba(255,255,255,0.03);
+  --glass-2: rgba(255,255,255,0.04);
+  --radius:14px;
+  --fw-regular:400;
+  --fw-bold:700;
+  --container:1200px;
+  font-synthesis: none;
 }
 
 /* ---------- RESET ---------- */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
-  font-family: 'Poppins', sans-serif;
-  background: radial-gradient(1200px 600px at 10% 20%, rgba(91,0,255,0.06), transparent 8%),
-              radial-gradient(1000px 500px at 90% 80%, rgba(0,255,240,0.04), transparent 8%),
-              var(--bg);
-  color:var(--white);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  overflow-x:hidden;
-  scroll-behavior:smooth;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(91,0,255,0.06), transparent 8%),
+              radial-gradient(1000px 500px at 90% 80%, rgba(0,255,240,0.04), transparent 8%),
+              var(--bg);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden; /* This often causes problems on mobile */
+  scroll-behavior:smooth;
 }
 
 /* ---------- UTILS ---------- */
@@ -41,21 +41,28 @@ body{
 .section-title{font-size:2.2rem;margin-bottom:8px;letter-spacing:0.2px}
 .section-sub{color:rgba(255,255,255,0.7);margin-bottom:30px}
 
+/* CENTERING FIX FOR ALL SECTION HEADINGS (Services, About, Contact) */
+.services-section,
+.about-section,
+.inquiry-section .container {
+    text-align: center;
+}
+
 /* ---------- CURSOR ---------- */
 .cursor{
-  width:14px;height:14px;border-radius:50%;
-  position:fixed;pointer-events:none;z-index:99999;
-  transform:translate(-50%,-50%);border:2px solid rgba(255,255,255,0.9);
-  mix-blend-mode:screen; transition:transform .09s linear;
-  backdrop-filter: blur(2px);
+  width:14px;height:14px;border-radius:50%;
+  position:fixed;pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);border:2px solid rgba(255,255,255,0.9);
+  mix-blend-mode:screen; transition:transform .09s linear;
+  backdrop-filter: blur(2px);
 }
 
 /* ---------- SUCCESS BANNER ---------- */
 .success-message{
-  display:none;position:fixed;top:18px;left:50%;transform:translateX(-50%);
-  background:linear-gradient(90deg,var(--violet),var(--cyan));
-  color:#000;padding:10px 18px;border-radius:999px;font-weight:700;z-index:9000;
-  box-shadow:0 8px 30px rgba(0,0,0,0.6);
+  display:none;position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  background:linear-gradient(90deg,var(--violet),var(--cyan));
+  color:#000;padding:10px 18px;border-radius:999px;font-weight:700;z-index:9000;
+  box-shadow:0 8px 30px rgba(0,0,0,0.6);
 }
 
 /* ---------- NAVBAR ---------- */
@@ -70,11 +77,11 @@ nav ul li a:hover{background:var(--glass);color:var(--cyan)}
 .hero-section{height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding-top:60px;overflow:hidden}
 .bg-layer{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .particles{position:absolute;inset:-10% -10% -10% -10%;background:
-  radial-gradient(circle at 15% 20%, rgba(91,0,255,0.06) 1%, transparent 7%),
-  radial-gradient(circle at 80% 75%, rgba(0,255,240,0.05) 1%, transparent 6%);}
+  radial-gradient(circle at 15% 20%, rgba(91,0,255,0.06) 1%, transparent 7%),
+  radial-gradient(circle at 80% 75%, rgba(0,255,240,0.05) 1%, transparent 6%);}
 .particles::after{
-  content:'';position:absolute;inset:0;background:
-  conic-gradient(from 0deg at 50% 50%, rgba(91,0,255,0.02), transparent 30%);mix-blend-mode:screen;opacity:0.9
+  content:'';position:absolute;inset:0;background:
+  conic-gradient(from 0deg at 50% 50%, rgba(91,0,255,0.02), transparent 30%);mix-blend-mode:screen;opacity:0.9
 }
 
 /* DNA svg hero animation */
@@ -84,11 +91,19 @@ nav ul li a:hover{background:var(--glass);color:var(--cyan)}
 /* text */
 .hero-content{position:relative;z-index:2;text-align:center;max-width:1000px;padding:30px}
 .gradient-text{
-  font-size:3.2rem;line-height:1.02;font-weight:700;
-  background:linear-gradient(90deg,var(--violet),var(--cyan));
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  background-size:200% 100%;animation:gradientShift 6s linear infinite;
-  text-shadow:0 6px 30px rgba(91,0,255,0.06);
+  font-size:3.2rem;line-height:1.02;font-weight:700;
+  background:linear-gradient(90deg,var(--violet),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size:200% 100%;animation:gradientShift 6s linear infinite;
+  text-shadow:0 6px 30px rgba(91,0,255,0.06);
+}
+
+/* Styling for the bigger tagline */
+.hero-tagline {
+    margin-top: 14px;
+    font-weight: 600;
+    font-size: 1.2rem; /* Adjusted size */
+    color: rgba(255,255,255,0.8);
 }
 
 /* subtle glitch micro movement */
@@ -136,7 +151,8 @@ nav ul li a:hover{background:var(--glass);color:var(--cyan)}
     transform:translateY(-12px);
     box-shadow: 0 10px 40px rgba(91, 0, 255, 0.3), /* Violet glow */
                 0 28px 60px rgba(0, 0, 0, 0.6);
-}.founder-info .role{color:var(--cyan);font-weight:600;margin-top:6px}
+}
+.founder-info .role{color:var(--cyan);font-weight:600;margin-top:6px}
 .founder-links a{color:var(--white);margin:0 6px}
 
 /* ---------- INQUIRY FORM ---------- */
@@ -154,6 +170,22 @@ nav ul li a:hover{background:var(--glass);color:var(--cyan)}
 /* ---------- FOOTER ---------- */
 #site-footer{padding:26px 0;border-top:1px solid rgba(255,255,255,0.03);margin-top:20px}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 20px}
+
+/* FOOTER CREDIT GROUP: ensures the text lines stack vertically on the right */
+.footer-credit-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Aligns the lines to the right */
+    gap: 4px; /* Small space between the two lines */
+}
+
+/* WEBSITE DESIGN CREDIT: makes the text small and muted */
+.design-credit {
+    font-size: 0.8rem; /* Small text size */
+    color: rgba(255, 255, 255, 0.4); /* Very muted color */
+    margin-bottom: 0 !important;
+}
+
 .social-links a{margin-left:10px;color:var(--white);font-size:1.15rem}
 
 /* ---------- REVEAL ANIMATIONS ---------- */
@@ -166,11 +198,31 @@ nav ul li a:hover{background:var(--glass);color:var(--cyan)}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:950px){
-  .hero-content .gradient-text{font-size:2rem}
-  .founder-triangle{flex-direction:column;align-items:center}
-  .project-form{grid-template-columns:1fr}
-  nav ul{display:none}
-  .menu-toggle{display:block}
-  .dna-hero{display:none}
-  .micro-stats{display:none}
+  .hero-content .gradient-text{font-size:2rem}
+  .founder-triangle{flex-direction:column;align-items:center}
+  .project-form{grid-template-columns:1fr}
+  nav ul{display:none}
+  .menu-toggle{display:block}
+  .dna-hero{display:none}
+  .micro-stats{display:none}
+    
+    /* Responsive stacking for footer on small screens */
+    .footer-inner {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center everything when stacked */
+        text-align: center;
+        gap: 15px;
+    }
+    .footer-credit-group {
+        align-items: center; /* Center the group when stacked vertically */
+    }
+
+    /* FIX FOR MOBILE VISIBILITY/SCROLLING */
+    body {
+        overflow-x: auto; /* Re-enables horizontal scrolling if needed for small screens */
+    }
+    .hero-section {
+        height: auto; /* Allows the hero content to expand vertically */
+        min-height: 100vh;
+    }
 }

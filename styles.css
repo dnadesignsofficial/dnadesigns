@@ -16,21 +16,23 @@ body {
     font-family: var(--font-primary);
     background-color: var(--color-dark-bg);
     color: var(--color-light-text);
-    line-height: 1.6;
-    /* Important for correct fixed/absolute positioning */
-    position: relative;
+    overflow-x: hidden; 
+    
+    /* NEW FLUENCY FEATURE: Smooth Scrolling for Navigation */
+    scroll-behavior: smooth;
 }
 
 /* ------------------------------------------- */
-/* NEW: GLOW ANIMATION KEYFRAMES */
+/* ANIMATION KEYFRAMES (CSS Only) */
 /* ------------------------------------------- */
+/* Continuous Glow (Sparkle effect) */
 @keyframes pulseGlow {
     0% {
         filter: brightness(1) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
         opacity: 0.95;
     }
     50% {
-        filter: brightness(1.1) drop-shadow(0 0 15px rgba(255, 255, 255, 0.7));
+        filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
         opacity: 1;
     }
     100% {
@@ -39,22 +41,41 @@ body {
     }
 }
 
+/* Water Flow Animation (Replaced JS effect) */
+@keyframes liquidFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 /* ------------------------------------------- */
-/* CANVAS FOR SPARKLE EFFECT (Crucial Fix) */
+/* THEMED SUCCESS MESSAGE STYLING */
 /* ------------------------------------------- */
-#sparkle-canvas {
+.success-message {
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    /* Allows mouse events to pass through to the elements below */
-    pointer-events: none; 
-    z-index: 999; 
+    text-align: center;
+    padding: 15px;
+    background-color: #000000; 
+    color: var(--color-accent-glow); 
+    font-weight: 700;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+    z-index: 10000; 
 }
 
-
+/* ------------------------------------------- */
 /* 1. NAVIGATION BAR STYLING */
+/* ------------------------------------------- */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -63,13 +84,13 @@ body {
     position: fixed; 
     width: 100%;
     z-index: 1000;
-    background-color: rgba(8, 8, 8, 0.9);
+    background-color: rgba(8, 8, 8, 0.95); 
     backdrop-filter: blur(5px);
 }
 
-/* Logo Image Styling */
+/* LOGO SIZE INCREASED (from 45px to 60px) */
 .logo img {
-    height: 45px; 
+    height: 60px; 
     width: auto;
     display: block;
 }
@@ -94,7 +115,6 @@ body {
     color: var(--color-accent-glow);
 }
 
-/* Styling for the phone number link in the navbar */
 .contact-nav {
     color: var(--color-light-text) !important;
     text-decoration: none;
@@ -116,16 +136,44 @@ body {
     text-align: center;
     position: relative;
     overflow: hidden;
+    z-index: 1; 
 }
 
+/* LIQUID FLOW BACKGROUND LAYER (Pure CSS) */
+.video-placeholder.liquid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    
+    /* Colorful Gradient Definition (Water Flow Effect) */
+    background: linear-gradient(-45deg, #001f3f, #0056b3, #00b3b3, #3f0056);
+    background-size: 400% 400%;
+    
+    /* Apply the animation */
+    animation: liquidFlow 20s ease infinite;
+
+    /* Dark Overlay to keep the text readable */
+    opacity: 0.7; 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+/* Base background layer (No longer used, but kept for clarity) */
 .video-placeholder {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)); 
-    z-index: 1;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.6); 
 }
 
 .hero-content {
@@ -162,7 +210,7 @@ body {
     letter-spacing: 1px;
     border: 2px solid var(--color-light-text);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
-    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    transition: all 0.3s ease-out; 
     display: inline-block;
 }
 
@@ -179,6 +227,9 @@ body {
     padding: 80px 50px;
     text-align: center;
     cursor: pointer; 
+    position: relative; 
+    z-index: 1;
+    transition: opacity 0.6s ease-in, transform 0.4s ease-in; 
 }
 
 .services-highlight h2 {
@@ -224,6 +275,9 @@ body {
     padding: 80px 50px;
     text-align: center;
     background-color: #000000; 
+    position: relative; 
+    z-index: 1;
+    transition: opacity 0.6s ease-in, transform 0.4s ease-in; 
 }
 
 .about-section h2 {
@@ -285,24 +339,161 @@ body {
     color: var(--color-accent-glow);
 }
 
-/* Ensure no extra space is taken up by removed content */
 .founder-card .role, .founder-card p {
     display: none; 
 }
 
 
-/* 5. FOOTER STYLING */
-footer {
+/* 5. NEW: INQUIRY SECTION STYLING */
+.inquiry-section {
+    background-color: #1a1a1a; 
+    padding: 100px 50px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.6s ease-in, transform 0.4s ease-in; 
+}
+
+.inquiry-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.inquiry-content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--color-light-text);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.inquiry-content p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* FORM STYLING */
+.project-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #0d0d0d; 
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-form input,
+.project-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #333;
+    background-color: #1a1a1a;
+    color: var(--color-light-text);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.project-form input:focus,
+.project-form textarea:focus {
+    border-color: var(--color-accent-glow);
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Make Project Details (textarea) span both columns */
+.project-form textarea {
+    grid-column: 1 / -1; 
+    resize: vertical;
+}
+
+/* Make the Submit Button span both columns */
+.project-form .form-submit-button {
+    grid-column: 1 / -1;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: var(--color-accent-glow); 
+    color: var(--color-dark-bg);
+    border: none;
+    padding: 18px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: all 0.3s;
+}
+
+.project-form .form-submit-button:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+}
+
+
+.direct-contact-info {
+    margin-top: 30px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.direct-contact-info p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.direct-contact-info a {
+    color: var(--color-light-text);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.direct-contact-info a:hover {
+    color: var(--color-accent-glow);
+}
+
+.direct-contact-info span {
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+
+/* 6. FOOTER STYLING */
+#site-footer {
     text-align: center;
     padding: 20px;
     border-top: 1px solid #222;
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.5);
+    position: relative; 
+    z-index: 1;
 }
 
 .footer-content {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Social Links Styling */
+.social-links {
+    margin-bottom: 15px;
+}
+
+.social-links a {
+    font-size: 1.8rem;
+    color: var(--color-light-text);
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--color-accent-glow);
+}
+
+/* WhatsApp Specific Styling */
+.social-links a[aria-label="WhatsApp"]:hover {
+    color: #25D366; 
 }
 
 .contact-info {
@@ -330,12 +521,12 @@ footer {
 /* ========================================================= */
 
 @media (max-width: 900px) {
-    /* 1. Adjust global padding */
-    .navbar, .services-highlight, .about-section {
+    /* Global Padding */
+    .navbar, .services-highlight, .about-section, .inquiry-section {
         padding: 15px 20px;
     }
 
-    /* 2. NAVIGATION: Stack elements on small screens */
+    /* NAVIGATION */
     .navbar {
         flex-direction: column;
         align-items: center;
@@ -355,16 +546,12 @@ footer {
         margin: 5px 10px;
     }
     
+    /* LOGO SIZE ADJUSTMENT FOR MOBILE */
     .logo img {
-        height: 40px; 
+        height: 50px; 
     }
 
-    /* Hide the phone number from the navigation bar on small screens to save space */
-    .contact-nav {
-        display: none !important;
-    }
-
-    /* 3. HERO SECTION: Reduce font sizes */
+    /* HERO SECTION */
     .hero-content h1 {
         font-size: 2.5rem;
         margin-top: 100px; 
@@ -379,7 +566,7 @@ footer {
         font-size: 0.9rem;
     }
 
-    /* 4. FOUNDERS: Stack vertically on mobile */
+    /* FOUNDERS */
     .founder-triangle {
         flex-direction: column;
         align-items: center;
@@ -390,23 +577,26 @@ footer {
         width: 90%; 
     }
     
-    /* Remove pyramid transforms on mobile */
-    #nayan-card {
-        transform: translateY(0); 
+    /* INQUIRY SECTION (FORM) */
+    .inquiry-content h2 {
+        font-size: 2rem;
+    }
+    
+    .project-form {
+        grid-template-columns: 1fr; /* Stack inputs vertically */
+        padding: 20px;
     }
 
-    /* 5. SECTIONS: Reduce spacing and headings */
-    .services-highlight h2, .about-section h2 {
-        font-size: 2rem;
-        margin-bottom: 30px;
+    .project-form input,
+    .project-form textarea {
+        grid-column: auto; 
     }
-    
-    .mission-statement {
-        margin-bottom: 40px;
+
+    .project-form .form-submit-button {
         font-size: 1rem;
     }
-    
-    /* 6. FOOTER: Stack contact info */
+
+    /* FOOTER */
     .contact-info {
         display: flex;
         flex-direction: column;

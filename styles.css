@@ -162,26 +162,27 @@ nav ul li a:hover{background:var(--glass);color:var(--cyan)}
 
 /* floating small movement for life */
 .floaty{animation:floaty 6s ease-in-out infinite}
-@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}
 
-/* ---------- RESPONSIVE (UPDATED) ---------- */
+/* ---------- RESPONSIVE ---------- */
+/* ---------- RESPONSIVE (DIKSHA FIX ONLY) ---------- */
 @media (max-width:950px){
   .hero-content .gradient-text{font-size:2rem}
   
-  /* FIX: Stack founder cards vertically on smaller screens */
+  /* FIX: Founder cards (Diksha, Nayan, Adarsh) stack vertically on mobile */
   .founder-triangle{
-    flex-direction: column; /* Stacks cards vertically */
+    flex-direction: column; 
     align-items: center;
-    gap: 30px; /* Increase gap for vertical stacking */
-  }
-
-  /* Ensure the founder card takes up the full width minus padding */
-  .founder-card {
-    width: 100%;
-    max-width: 300px;
+    gap: 30px; 
   }
   
+  .founder-card {
+    width: 100%;
+    max-width: 300px; /* Ensures the card is not too wide */
+  }
+
   .project-form{grid-template-columns:1fr}
+  
   nav ul{display:none}
   .menu-toggle{display:block}
   .dna-hero{display:none}

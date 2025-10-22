@@ -162,25 +162,28 @@ nav ul li a:hover{background:var(--glass);color:var(--cyan)}
 
 /* floating small movement for life */
 .floaty{animation:floaty 6s ease-in-out infinite}
-@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 768px) {
-  .team-section {
-    padding: 0 16px; /* gives space on both sides */
+/* ---------- RESPONSIVE (UPDATED) ---------- */
+@media (max-width:950px){
+  .hero-content .gradient-text{font-size:2rem}
+  
+  /* FIX: Stack founder cards vertically on smaller screens */
+  .founder-triangle{
+    flex-direction: column; /* Stacks cards vertically */
+    align-items: center;
+    gap: 30px; /* Increase gap for vertical stacking */
   }
 
-  .team-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; /* centers all cards */
-    gap: 16px; /* spacing between cards */
-  }
-
-  .team-card {
-    flex: 0 1 100%;
+  /* Ensure the founder card takes up the full width minus padding */
+  .founder-card {
+    width: 100%;
     max-width: 300px;
-    margin: 0 auto;
   }
+  
+  .project-form{grid-template-columns:1fr}
+  nav ul{display:none}
+  .menu-toggle{display:block}
+  .dna-hero{display:none}
+  .micro-stats{display:none}
 }
-
